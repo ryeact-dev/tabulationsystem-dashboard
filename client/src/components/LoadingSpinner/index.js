@@ -1,6 +1,6 @@
 export default function LoadingSpinner() {
   return (
-    <div className='flex items-center justify-center'>
+   <div className='flex my-auto items-center justify-center w-full h-full rounded-xl'>
       <svg
         className='animate-spin my-5 h-8 w-8 text-white'
         xmlns='http://www.w3.org/2000/svg'
