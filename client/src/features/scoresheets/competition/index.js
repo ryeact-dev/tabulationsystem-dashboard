@@ -40,7 +40,7 @@ export default function Competition() {
     { enabled: !!competitionNumber }
   );
 
-  let candidateList = [];
+  let candidateList;
   isFinalist
     ? (candidateList = candidates.filter(
         (candidate) => candidate.is_finalist === true
@@ -67,7 +67,7 @@ export default function Competition() {
       <CompetitionContent
         isLoading={isLoading}
         judgeNumber={judgeNumberFilter}
-        candidates={candidateList}
+        candidates={candidateList ? candidateList : []}
         currentUser={currentUser}
         scores={scores}
         competition={competition}
