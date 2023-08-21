@@ -49,6 +49,7 @@ function Login() {
               src='./intro.jpg'
               alt='Dashwind Admin Template'
               className='w-full rounded-l-xl'
+              loading='lazy'
             />
           </div>
           <div className='my-auto px-10'>
