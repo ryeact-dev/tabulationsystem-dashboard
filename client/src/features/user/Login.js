@@ -46,8 +46,8 @@ function Login() {
         <article className='grid  grid-cols-1 rounded-xl bg-base-100 md:grid-cols-2'>
           <div className=''>
             <img
-              src='./intro.jpg'
-              alt='Dashwind Admin Template'
+              src='./intro.webp'
+              alt='loginImage'
               className='w-full rounded-l-xl'
               loading='lazy'
             />
