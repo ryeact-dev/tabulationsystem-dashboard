@@ -52,7 +52,7 @@ function Login() {
               loading='lazy'
             />
           </div>
-          <div className='my-auto px-10'>
+          <div className='my-auto px-10 py-4'>
             <h1 className='mb-8 text-primary text-center text-4xl font-semibold'>
               TABULATION SYSTEM
             </h1>
