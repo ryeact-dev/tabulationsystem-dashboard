@@ -33,7 +33,15 @@ function LeftSidebar() {
     sidebarMenus = sidebarMenus.filter(
       (menu) => menu.name === "Competitions" || menu.name === "Dashboard"
     );
-
+  
+if (currentUser.role === "user")
+    sidebarMenus = sidebarMenus.filter(
+      (menu) =>
+        menu.name === "Competitions" ||
+        menu.name === "Dashboard" ||
+        menu.name === "Results"
+    );
+  
   return (
     <div className='drawer-side '>
       <label htmlFor='left-sidebar-drawer' className='drawer-overlay'></label>
