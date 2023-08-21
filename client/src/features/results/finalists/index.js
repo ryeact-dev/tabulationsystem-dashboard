@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { usersStore } from "../../../app/store";
 import { getScoresheets } from "../../../api/scoresheetsApi";
@@ -9,29 +9,26 @@ import TopSideButtons from "../../../components/TopSideButtons";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export default function Finalists() {
-  const [allUsers, candidates] = usersStore((state) => [
-    state.allUsers,
-    state.candidates,
-  ]);
+  const allUsers = usersStore((state) => state.allUsers);
   const allJudges = allUsers.filter((user) => user.user_role === "judge");
 
   const [competitionResult, setCompetitionResult] = useState("");
   const [finalistCandidates, setFinalCandidates] = useState("");
 
-  const filterCandidates = useCallback(() => {
-    const finalist = candidates.filter(
-      (candidate) => candidate.is_finalist === true
-    );
-    setFinalCandidates(finalist);
-  }, [candidates]);
-
-  useEffect(() => {
-    filterCandidates();
-  }, [filterCandidates]);
+  const { refetch: refetchCandidates } = useQuery(
+    "candidates",
+    () => getCandidates(),
+    {
+      onSuccess: ({ candidatesData }) =>
+        setFinalCandidates(
+          candidatesData.filter((candidate) => candidate.is_finalist === true)
+        ),
+    }
+  );
 
   useQuery("scoresheets", () => getScoresheets(), {
     enabled: !!finalistCandidates,
-    refetchInterval: 10000,
+    refetchInterval: 5000,
     onSuccess: ({ data }) => filteredData(data),
   });
 
@@ -81,6 +78,7 @@ export default function Finalists() {
           btnName='Add/Remove Finalist'
           title='Add a Finalist'
           bodyType={MODAL_BODY_TYPES.FINALIST_ADD}
+          extraObject={refetchCandidates}
         />
       }
     >
