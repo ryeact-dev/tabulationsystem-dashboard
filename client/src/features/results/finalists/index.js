@@ -9,19 +9,29 @@ import TopSideButtons from "../../../components/TopSideButtons";
 import LoadingSpinner from "../../../components/LoadingSpinner";
 
 export default function Finalists() {
-  const [candidates, allUsers] = usersStore((state) => [
-    state.candidates,
+  const [allUsers, candidates] = usersStore((state) => [
     state.allUsers,
+    state.candidates,
   ]);
-
   const allJudges = allUsers.filter((user) => user.user_role === "judge");
 
-  const finalistCandidates = candidates.filter(
-    (candidate) => candidate.is_finalist === true
-  );
   const [competitionResult, setCompetitionResult] = useState("");
+  const [finalistCandidates, setFinalCandidates] = useState("");
+
+  const filterCandidates = useCallback(() => {
+    const finalist = candidates.filter(
+      (candidate) => candidate.is_finalist === true
+    );
+    setFinalCandidates(finalist);
+  }, [candidates]);
+
+  useEffect(() => {
+    filterCandidates();
+  }, [filterCandidates]);
 
   useQuery("scoresheets", () => getScoresheets(), {
+    enabled: !!finalistCandidates,
+    refetchInterval: 10000,
     onSuccess: ({ data }) => filteredData(data),
   });
 
