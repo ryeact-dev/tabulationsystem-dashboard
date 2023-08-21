@@ -44,13 +44,13 @@ export default function AddScoreModalBody({ closeModal, extraObject }) {
   }
 
   function saveCandidateScore() {
-    console.log(candidate.is_finalist);
-    const scoreData = {
+     const scoreData = {
       ...scoresheetObj,
       total_score: totalScore,
+      judgeName: currentUser.judge_name,
       judgeNumber: currentUser.judgeNumber,
       candidateNumber: candidate.candidate_number,
-      isFinalist: candidate.is_finalist,
+      isFinalist: competition.is_finalist,
     };
 
     let typeOfScore;
