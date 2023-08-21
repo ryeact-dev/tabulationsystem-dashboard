@@ -15,3 +15,8 @@
 - Daisy UI
 - Cloundinary
 - zustand
+
+## users: 
+ - judge1    pw:1
+ - judge2    pw:2
+ - tabulator pw:1
