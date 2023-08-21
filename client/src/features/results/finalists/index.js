@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQuery } from "react-query";
 import { usersStore } from "../../../app/store";
 import { getScoresheets } from "../../../api/scoresheetsApi";
+import { getCandidates } from "../../../api/candidatesApi";
 import { MODAL_BODY_TYPES } from "../../../utils/globalConstantUtil";
 import TitleCard from "../../../components/Cards/TitleCard";
 import FinalistTableData from "./components/FinalistTableData";
