@@ -5,7 +5,7 @@ import {
 } from "../../../../api/candidatesApi";
 import { headerStore } from "../../../../app/store";
 
-export default function AddFinalistModal() {
+export default function AddFinalistModal({ extraObject: refetchCandidates }) {
   const showNotification = headerStore((state) => state.showNotification);
 
   const queryClient = useQueryClient();
@@ -29,6 +29,7 @@ export default function AddFinalistModal() {
           status: 1,
         });
       }
+       refetchCandidates();
     },
   });
 
