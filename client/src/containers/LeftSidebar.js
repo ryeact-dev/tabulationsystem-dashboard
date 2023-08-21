@@ -49,7 +49,7 @@ function LeftSidebar() {
           <h1>Tabulation Team</h1>
         </li>
 
-        {sidebarMenus.map((route, i) => {
+        {currentUser.role && sidebarMenus.map((route, i) => {
           return (
             <li className='' key={i}>
               {route.submenu ? (
