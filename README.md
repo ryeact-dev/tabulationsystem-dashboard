@@ -6,4 +6,12 @@
 
 ## Preview
 
-🚀 [Live preview]()
+🚀 [Live preview](https://tabulationsystem-dashboard-client.vercel.app/)
+
+## Technology
+- Create React App
+- React Router Dom
+- React Query v3
+- Daisy UI
+- Cloundinary
+- zustand
