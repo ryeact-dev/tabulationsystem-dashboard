@@ -24,7 +24,7 @@ app.use(helmet());
 app.use(
   cors({
     credentials: true,
-    origin: whitelist,
+    origin: 'https://tabulationsystem-dashboard-client.vercel.app',
   })
 );
 
