@@ -2,7 +2,7 @@
 
 # Daisy UI Admin Dashboard Template - Tabulation System
 
-- [Inspired by](https://github.com/srobbin01)
+- Inspired by [srobbin01](https://github.com/srobbin01)
 
 ## Preview
 
