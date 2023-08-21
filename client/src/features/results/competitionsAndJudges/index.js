@@ -104,7 +104,9 @@ export default function CompetitionAndJudges() {
         )
       }
     >
-      {!filteredResults ? (
+      {!competitionResult?.length > 0 ? (
+        <h1 className='text-center'>No Scores to be displayed yet.</h1>
+      ) : !filteredResults ? (
         <LoadingSpinner />
       ) : (
         <CandJTableData
