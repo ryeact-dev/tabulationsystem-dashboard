@@ -47,7 +47,7 @@ export default function AddScoreModalBody({ closeModal, extraObject }) {
      const scoreData = {
       ...scoresheetObj,
       total_score: totalScore,
-      judgeName: currentUser.judge_name,
+      judgeName: currentUser.judgeName,
       judgeNumber: currentUser.judgeNumber,
       candidateNumber: candidate.candidate_number,
       isFinalist: competition.is_finalist,
