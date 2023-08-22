@@ -49,11 +49,8 @@ router.post("/api/competitions", async (req, res) => {
     competition_number,
     competition_name,
     scoresheet,
-    isFinalist = false,
+    is_finalist = false,
   } = req.body;
-
-  let competitionName = competition_name;
-  if (isFinalist) competitionName += " (Finalist)";
 
   const id = uuidv4();
 
@@ -71,8 +68,8 @@ router.post("/api/competitions", async (req, res) => {
       [
         id,
         competition_number,
-        competitionName,
-        isFinalist,
+        competition_name,
+        is_finalist,
         JSON.stringify(scoresheet),
       ]
     );
@@ -92,13 +89,8 @@ router.put("/api/competitions", async (req, res) => {
     competition_number,
     competition_name,
     scoresheet,
-    isFinalist = false,
+    is_finalist = false,
   } = req.body;
-
-  console.log(isFinalist);
-
-  let competitionName = competition_name;
-  if (isFinalist) competitionName += " (Finalist)";
 
   try {
     const duplicateCompetitionNumber = await pool.query(
@@ -108,13 +100,13 @@ router.put("/api/competitions", async (req, res) => {
 
     if (duplicateCompetitionNumber.rows[0].competition_id !== competition_id)
       return res.status(409).send("Duplicate Competition Number");
-    
+
     await pool.query(
       "UPDATE competitions SET competition_number = $1, competition_name = $2, is_finalist = $3, scoresheet = $4 WHERE competition_id = $5",
       [
         competition_number,
-        competitionName,
-        isFinalist,
+        competition_name,
+        is_finalist,
         JSON.stringify(scoresheet),
         competition_id,
       ]
