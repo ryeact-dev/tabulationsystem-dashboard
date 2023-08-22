@@ -26,7 +26,7 @@ export default function FinalistTableData({
         ref={componentToPrintRef}
         className="w-full rounded-2xl overflow-x-auto"
       >
-        <Subtitle styleClass="text-primary font-bold text-6xl text-center py-4">
+        <Subtitle styleClass="text-primary font-bold !text-6xl text-center py-4">
           Event Winners
         </Subtitle>
 
