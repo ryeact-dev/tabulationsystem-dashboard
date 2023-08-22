@@ -51,7 +51,7 @@ export default function CompetitionContent({
     >
       <figure className='rounded-none'>
         <img
-          className='h-[24rem] w-full'
+          className="h-[24rem] w-full object-cover"
           src={candidate.photo}
           alt='candidatephoto'
           loading='lazy'
