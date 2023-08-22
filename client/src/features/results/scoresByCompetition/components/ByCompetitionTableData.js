@@ -30,12 +30,12 @@ export default function ByCompetitionTableData({
         <Subtitle styleClass="text-primary !text-3xl text-center mt-2 ">
           {title}
         </Subtitle>
-        <Subtitle styleClass="text-primary !text-3xl text-center pb-4">
-          <p className="font-bold text-2xl text-primary/80">
+        <Subtitle styleClass="!text-3xl text-center pb-4">
+          <p className="font-bold text-2xl">
             Candidate No. {competitionResult[0]?.candidate_number}{" "}
             {competitionResult[0]?.full_name}
           </p>
-          <h1 className="text-xl -mt-1 text-primary/70">Competition Winner</h1>
+          <h1 className="text-xl -mt-1">Competition Winner</h1>
         </Subtitle>
       </div>
       {competitionResult.length > 0 ? (
