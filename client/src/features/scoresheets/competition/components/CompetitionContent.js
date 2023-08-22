@@ -49,12 +49,12 @@ export default function CompetitionContent({
       className='card card-side overflow-hidden bg-base-100 shadow-xl border-[1px] border-neutral flex-col items-center'
       key={candidate.id}
     >
-      <figure className='rounded-none'>
+      <figure className="rounded-none h-[20rem] w-full">
         <img
-          className="h-[24rem] w-full object-cover"
           src={candidate.photo}
-          alt='candidatephoto'
-          loading='lazy'
+          className="w-full h-full object-cover"
+          alt="candidatephoto"
+          loading="lazy"
         />
       </figure>
       <div className='card-body p-4 w-full items-center'>
