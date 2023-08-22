@@ -102,11 +102,11 @@ router.put("/api/competitions", async (req, res) => {
 
   try {
     const duplicateCompetitionNumber = await pool.query(
-      "SELECT competition_number FROM competitions WHERE competition_number = $1",
+      "SELECT * FROM competitions WHERE competition_number = $1",
       [competition_number]
     );
 
-    if (duplicateCompetitionNumber.rows.length > 0)
+    if (duplicateCompetitionNumber.rows[0].competition_id !== competition_id)
       return res.status(409).send("Duplicate Competition Number");
     
     await pool.query(
