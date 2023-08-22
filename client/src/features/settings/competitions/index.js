@@ -13,26 +13,25 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 export default function Competitions() {
   const openModal = modalStore((state) => state.openModal);
 
- const {
-    isLoading,
-    data: competitions = [],
-    refetch: refetchCompetitions,
-  } = useQuery("competitions", () => getCompetitions());
+  const { isLoading, data: competitions = [] } = useQuery("competitions", () =>
+    getCompetitions()
+  );
 
-  const openAddNewCompetitionModal = (competition) => {
-    const title = competition ? "Update Competition" : "Add New Competition";
+  const openAddNewCompetitionModal = (competitionId) => {
+    const title = competitionId ? "Update Competition" : "Add New Competition";
+
     openModal({
       title,
       bodyType: MODAL_BODY_TYPES.COMPETITION_ADD_NEW,
-      extraObject: { competition, refetchCompetitions },
+      extraObject: competitionId,
     });
   };
 
   const TopSideButtons = () => {
     return (
-      <div className='float-right inline-block'>
+      <div className="float-right inline-block">
         <button
-          className='btn-primary btn-sm btn px-6 normal-case text-white'
+          className="btn-primary btn-sm btn px-6 normal-case text-white"
           onClick={() => openAddNewCompetitionModal()}
         >
           Add New Competition
@@ -58,16 +57,16 @@ export default function Competitions() {
 
   return (
     <TitleCard
-      title='Competitions'
-      topMargin='mt-2'
+      title="List of Competitions"
+      topMargin="mt-2"
       TopSideButtons={<TopSideButtons />}
     >
       {/* Leads List in table format loaded from slice after api call */}
       {isLoading ? (
         <LoadingSpinner />
       ) : (
-        <div className='w-full overflow-x-auto'>
-          <table className='table table-compact w-full'>
+        <div className="w-full overflow-x-auto">
+          <table className="table table-compact w-full">
             <thead>
               <tr>
                 <th className={tableHeaderClass}>Competition Number</th>
@@ -86,18 +85,20 @@ export default function Competitions() {
 
                     <td>
                       <button
-                        className='btn-ghost btn-square btn'
-                        onClick={() => openAddNewCompetitionModal(competition)}
+                        className="btn-ghost btn-square btn"
+                        onClick={() =>
+                          openAddNewCompetitionModal(competition.competition_id)
+                        }
                       >
-                        <Cog6ToothIcon className='w-5 h-5' />
+                        <Cog6ToothIcon className="w-5 h-5" />
                       </button>
                       <button
-                        className='btn-ghost btn-square btn'
+                        className="btn-ghost btn-square btn"
                         onClick={() =>
                           deleteCompetition(competition.competition_id)
                         }
                       >
-                        <TrashIcon className='w-5 h-5' />
+                        <TrashIcon className="w-5 h-5" />
                       </button>
                     </td>
                   </tr>
