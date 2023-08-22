@@ -9,7 +9,7 @@ import TopSideButtons from "../components/TopSideButtons";
 import CompetitionContent from "./components/CompetitionContent";
 
 export default function Competition() {
-  const [competition, setCompetition] = useState([]);
+  const [competition, setCompetition] = useState("");
   const [candidates, currentUser] = usersStore((state) => [
     state.candidates,
     state.currentUser,
