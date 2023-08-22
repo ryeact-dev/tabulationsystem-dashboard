@@ -1,11 +1,11 @@
+import { modalStore } from "../app/store";
 import { MODAL_BODY_TYPES } from "../utils/globalConstantUtil";
 import AddUserModalBody from "../features/settings/users/components/AddUserModalBody";
 import ConfirmationModal from "../features/common/ConfirmationModal";
 import AddCandidateModalBody from "../features/candidates/components/AddCandidateModalBody";
 import AddScoreModalBody from "../features/scoresheets/components/AddScoreModalBody";
 import AddCompetitionModalBody from "../features/settings/competitions/components/AddCompetitionModalBody";
-import AddFinalistModal from "../features/results/finalists/components/AddFinalistModal";
-import { modalStore } from "../app/store";
+import AddFinalistModal from "../features/results/overall/components/AddFinalistModal";
 
 function ModalLayout() {
   const [isOpen, bodyType, size, extraObject, title, closeModal] = modalStore(
