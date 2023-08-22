@@ -33,7 +33,7 @@ export default function Competitions() {
           className='btn-primary btn-sm btn px-6 normal-case text-white'
           onClick={() => openAddNewCompetitionModal()}
         >
-          Add New
+          Add New Competition
         </button>
       </div>
     );
