@@ -15,10 +15,12 @@ const INITIAL_COMPETITION_OBJ = {
 };
 
 export default function AddCompetitionModalBody({ closeModal, extraObject }) {
+ const { competition, refetchCompetitions } = extraObject;
+
   const showNotification = headerStore((state) => state.showNotification);
   const [errorMessage, setErrorMessage] = useState("");
   const [competitionObj, setCompetitionObj] = useState(
-    extraObject ? extraObject : INITIAL_COMPETITION_OBJ
+    competition ? competition : INITIAL_COMPETITION_OBJ
   );
 
   const queryClient = useQueryClient();
@@ -31,6 +33,7 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
         message: "Competition successfully submitted",
         status: 1,
       });
+      refetchCompetitions();
       closeModal();
     },
   });
