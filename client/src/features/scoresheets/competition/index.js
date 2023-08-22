@@ -67,7 +67,7 @@ export default function Competition() {
       <CompetitionContent
         isLoading={isLoading}
         judgeNumber={judgeNumberFilter}
-        candidates={candidateList ? candidateList : []}
+        candidates={competitionNumber ? candidateList : ""}
         currentUser={currentUser}
         scores={scores}
         competition={competition}
