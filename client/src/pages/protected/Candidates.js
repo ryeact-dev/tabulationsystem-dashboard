@@ -7,9 +7,9 @@ function InternalPage() {
   const currentUser = usersStore((state) => state.currentUser);
   const setPageTitle = headerStore((state) => state.setPageTitle);
 
-  const isAllowed = currentUser.role !== "admin";
-  const headerTitle = isAllowed ? "Not Authorize" : "Contestants";
-  const AllowPage = isAllowed ? <ErrorPage /> : <Candidates />;
+  const isAllowed = currentUser.role === "admin";
+  const headerTitle = isAllowed ? "Contestants" : "Not Authorize";
+  const AllowPage = isAllowed ? <Candidates /> : <ErrorPage />;
 
   useEffect(() => {
     setPageTitle({ title: headerTitle });
