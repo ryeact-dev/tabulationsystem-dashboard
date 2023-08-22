@@ -29,12 +29,13 @@ export default function Users() {
 
   return (
     <>
-      <TitleCard
-        title='All Users'
-        topMargin='mt-2'
+       <TitleCard
+        title="List of Users"
+        topMargin="mt-2"
         TopSideButtons={
           <TopSideButtons
-            title={"Add New User"}
+            btnName="Add New User"
+            title="Add New User"
             bodyType={MODAL_BODY_TYPES.USERS_ADD_NEW}
           />
         }
