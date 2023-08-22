@@ -11,7 +11,7 @@ const INITIAL_COMPETITION_OBJ = {
   competition_number: "",
   competition_name: "",
   scoresheet: [{ headerTitle: "", subHeader: "", percentage: "", score: 0 }],
-  isFinalist: false,
+  is_finalist: false,
 };
 
 export default function AddCompetitionModalBody({ closeModal, extraObject }) {
