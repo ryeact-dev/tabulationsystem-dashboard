@@ -45,8 +45,12 @@ router.get("/api/specific-competition/:competitionId", async (req, res) => {
 
 // ==== ADD NEW COMPETITION ====
 router.post("/api/competitions", async (req, res) => {
-  const { competition_number, competition_name, scoresheet, isFinalist } =
-    req.body;
+  const {
+    competition_number,
+    competition_name,
+    scoresheet,
+    isFinalist = false,
+  } = req.body;
 
   let competitionName = competition_name;
   if (isFinalist) competitionName += " (Finalist)";
@@ -88,14 +92,16 @@ router.put("/api/competitions", async (req, res) => {
     competition_number,
     competition_name,
     scoresheet,
-    isFinalist,
+    isFinalist = false,
   } = req.body;
+
+  console.log(isFinalist);
 
   let competitionName = competition_name;
   if (isFinalist) competitionName += " (Finalist)";
 
   try {
-    const updatedData = await pool.query(
+    await pool.query(
       "UPDATE competitions SET competition_number = $1, competition_name = $2, is_finalist = $3, scoresheet = $4 WHERE competition_id = $5",
       [
         competition_number,
