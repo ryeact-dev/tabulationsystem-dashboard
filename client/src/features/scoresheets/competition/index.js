@@ -53,7 +53,9 @@ export default function Competition() {
 
   return (
     <TitleCard
-      title={`${competition.competition_name} Competition`}
+     title={`${
+        competitionNumber ? competition.competition_name : "Loading"
+      } Competition`}
       topMargin='mt-2'
       TopSideButtons={
         currentUser.role !== "judge" && (
