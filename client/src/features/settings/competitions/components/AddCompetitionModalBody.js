@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
-import { competitionApi } from "../../../../api/competitionsApi";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import {
+  competitionApi,
+  getSpecificCompetition,
+} from "../../../../api/competitionsApi";
 import { headerStore } from "../../../../app/store";
 import InputText from "../../../../components/Input/InputText";
+import LoadingSpinner from "../../../../components/LoadingSpinner";
 import ErrorText from "../../../../components/Typography/ErrorText";
 import FooterButtonWithCheckmark from "./FooterButtonWithCheckmark";
 import ScoresheetForm from "./ScoresheetForm";
@@ -14,13 +18,23 @@ const INITIAL_COMPETITION_OBJ = {
   is_finalist: false,
 };
 
-export default function AddCompetitionModalBody({ closeModal, extraObject }) {
- const { competition, refetchCompetitions } = extraObject;
-
+export default function AddCompetitionModalBody({
+  closeModal,
+  extraObject: competitionId,
+}) {
   const showNotification = headerStore((state) => state.showNotification);
   const [errorMessage, setErrorMessage] = useState("");
   const [competitionObj, setCompetitionObj] = useState(
-    competition ? competition : INITIAL_COMPETITION_OBJ
+    !competitionId ? INITIAL_COMPETITION_OBJ : ""
+  );
+
+  useQuery(
+    ["competitions", competitionId],
+    () => getSpecificCompetition({ competitionId }),
+    {
+      enabled: !!competitionId,
+      onSuccess: ({ data }) => setCompetitionObj(data[0]),
+    }
   );
 
   const queryClient = useQueryClient();
@@ -33,7 +47,6 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
         message: "Competition successfully submitted",
         status: 1,
       });
-      refetchCompetitions();
       closeModal();
     },
   });
@@ -66,7 +79,7 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
       }
 
       let typeOfCompetition;
-      if (extraObject) {
+      if (competitionId) {
         typeOfCompetition = "update";
         competitionMutation.mutate({ competitionObj, typeOfCompetition });
       } else {
@@ -88,6 +101,7 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
         return { ...prevState, scoresheet: updatedScoresheet };
       });
     } else {
+      console.log(value);
       setCompetitionObj({ ...competitionObj, [updateType]: value });
     }
   };
@@ -109,30 +123,32 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
     });
   };
 
-  return (
+  return !competitionObj ? (
+    <LoadingSpinner />
+  ) : (
     <>
-      <div className='mb-1 flex items-center justify-center gap-3'>
+      <div className="mb-1 flex items-center justify-center gap-3">
         <InputText
-          type='number'
+          type="number"
           defaultValue={competitionObj.competition_number}
-          updateType='competition_number'
-          containerStyle='!w-[6rem]'
-          labelTitle='No.'
+          updateType="competition_number"
+          containerStyle="!w-[6rem]"
+          labelTitle="No."
           updateFormValue={updateFormValue}
         />
         <InputText
-          type='text'
+          type="text"
           defaultValue={competitionObj.competition_name}
-          updateType='competition_name'
-          labelTitle='Name/Title'
-          containerStyle='font-semibold'
+          updateType="competition_name"
+          labelTitle="Name/Title"
+          containerStyle="font-semibold"
           updateFormValue={updateFormValue}
         />
       </div>
 
-      <article className='my-4 flex items-center justify-between'>
-        <h1 className='text-2xl font-semibold'>Scoresheet Criteria</h1>
-        <button className='btn-primary btn text-white' onClick={addCriteria}>
+      <article className="my-4 flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Scoresheet Criteria</h1>
+        <button className="btn-primary btn text-white" onClick={addCriteria}>
           Add Criteria
         </button>
       </article>
@@ -143,11 +159,11 @@ export default function AddCompetitionModalBody({ closeModal, extraObject }) {
         updateFormValue={updateFormValue}
       />
 
-      <ErrorText styleClass='mt-4'>{errorMessage}</ErrorText>
+      <ErrorText styleClass="mt-4">{errorMessage}</ErrorText>
 
       <FooterButtonWithCheckmark
+        competitionId={competitionId}
         isLoading={competitionMutation.isLoading}
-        extraObject={extraObject}
         competitionObj={competitionObj}
         updateFormValue={updateFormValue}
         closeModal={closeModal}
