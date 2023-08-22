@@ -12,14 +12,14 @@ export default function FooterButtonWithCheckmark({
   const content = (
     <footer className='flex justify-between items-center'>
       <label className='label cursor-pointer'>
-        <input
-          type='checkbox'
-          className='checkbox checkbox-primary'
-          checked={competitionObj.isFinalist}
+      <input
+          type="checkbox"
+          className="checkbox checkbox-primary"
+          checked={competitionObj.is_finalist}
           onChange={() =>
             updateFormValue({
               updateType: "isFinalist",
-              value: !competitionObj.isFinalist,
+              value: !competitionObj.is_finalist,
             })
           }
         />
