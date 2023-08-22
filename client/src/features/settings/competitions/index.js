@@ -13,16 +13,18 @@ import LoadingSpinner from "../../../components/LoadingSpinner";
 export default function Competitions() {
   const openModal = modalStore((state) => state.openModal);
 
-  const { isLoading, data: competitions = [] } = useQuery("competitions", () =>
-    getCompetitions()
-  );
+ const {
+    isLoading,
+    data: competitions = [],
+    refetch: refetchCompetitions,
+  } = useQuery("competitions", () => getCompetitions());
 
-  const openAddNewCompetitionModal = (competitionId) => {
-    const title = competitionId ? "Update Competition" : "Add New Competition";
+  const openAddNewCompetitionModal = (competition) => {
+    const title = competition ? "Update Competition" : "Add New Competition";
     openModal({
       title,
       bodyType: MODAL_BODY_TYPES.COMPETITION_ADD_NEW,
-      extraObject: competitionId,
+      extraObject: { competition, refetchCompetitions },
     });
   };
 
