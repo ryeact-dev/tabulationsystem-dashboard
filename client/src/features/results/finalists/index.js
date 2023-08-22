@@ -23,8 +23,9 @@ export default function Finalists() {
       ),
   });
 
-  useQuery("scoresheets", () => getScoresheets(), {
+ useQuery("scoresheets", () => getScoresheets(), {
     enabled: !!finalistCandidates,
+    refetchInterval: 5000,
     onSuccess: ({ data }) => filteredData(data),
   });
 
