@@ -106,9 +106,11 @@ export default function CompetitionContent({
     </animated.div>
   ));
 
-  return (
-    <section className='mt-2 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6'>
+ return candidates ? (
+    <section className="mt-2 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {content}
     </section>
+  ) : (
+    <LoadingSpinner />
   );
 }
