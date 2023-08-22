@@ -47,11 +47,6 @@ const routes = [
         // icon: <UserIcon className={submenuIconClasses} />,
         name: "Finalists",
       },
-      {
-        path: "/app/results-winners",
-        // icon: <UserIcon className={submenuIconClasses} />,
-        name: "Winners",
-      },
     ],
   },
   {
