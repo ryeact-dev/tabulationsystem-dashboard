@@ -101,6 +101,14 @@ router.put("/api/competitions", async (req, res) => {
   if (isFinalist) competitionName += " (Finalist)";
 
   try {
+    const duplicateCompetitionNumber = await pool.query(
+      "SELECT competition_number FROM competitions WHERE competition_number = $1",
+      [competition_number]
+    );
+
+    if (duplicateCompetitionNumber.rows.length > 0)
+      return res.status(409).send("Duplicate Competition Number");
+    
     await pool.query(
       "UPDATE competitions SET competition_number = $1, competition_name = $2, is_finalist = $3, scoresheet = $4 WHERE competition_id = $5",
       [
