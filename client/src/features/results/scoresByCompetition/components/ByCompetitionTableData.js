@@ -31,8 +31,8 @@ export default function ByCompetitionTableData({
           {title}
         </Subtitle>
         <Subtitle styleClass="!text-3xl text-center pb-4">
-          <p className="font-bold text-2xl">
-            Candidate No. {competitionResult[0]?.candidate_number}{" "}
+         <p className="font-bold text-2xl">
+            Contestant No. {competitionResult[0]?.candidate_number} -{" "}
             {competitionResult[0]?.full_name}
           </p>
           <h1 className="text-xl -mt-1">Competition Winner</h1>
