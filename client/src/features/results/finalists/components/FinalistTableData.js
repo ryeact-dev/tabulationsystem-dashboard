@@ -32,32 +32,32 @@ export default function FinalistTableData({
 
         {/* Top 1 */}
         <Subtitle styleClass={winnersClass}>
-          TOP 1 : Candidate No. {competitionResult[0]?.candidate_number || ""} -{" "}
-          {competitionResult[0]?.full_name.toUpperCase() || ""}
+          TOP 1 : Contestant No. {competitionResult[0]?.candidate_number || ""}{" "}
+          - {competitionResult[0]?.full_name.toUpperCase() || ""}
         </Subtitle>
 
         {/* Top 2 */}
         <Subtitle styleClass={winnersClass}>
-          TOP 2 : Candidate No. {competitionResult[1]?.candidate_number || ""} -{" "}
-          {competitionResult[1]?.full_name.toUpperCase() || ""}
+          TOP 2 : Contestant No. {competitionResult[1]?.candidate_number || ""}{" "}
+          - {competitionResult[1]?.full_name.toUpperCase() || ""}
         </Subtitle>
 
         {/* Top 3 */}
         <Subtitle styleClass={winnersClass}>
-          TOP 3 : Candidate No. {competitionResult[2]?.candidate_number || ""} -{" "}
-          {competitionResult[2]?.full_name.toUpperCase() || ""}
+          TOP 3 : Contestant No. {competitionResult[2]?.candidate_number || ""}{" "}
+          - {competitionResult[2]?.full_name.toUpperCase() || ""}
         </Subtitle>
 
         {/* Top 4 */}
         <Subtitle styleClass={winnersClass}>
-          TOP 4 : Candidate No. {competitionResult[3]?.candidate_number || ""} -{" "}
-          {competitionResult[3]?.full_name.toUpperCase() || ""}
+          TOP 4 : Contestant No. {competitionResult[3]?.candidate_number || ""}{" "}
+          - {competitionResult[3]?.full_name.toUpperCase() || ""}
         </Subtitle>
 
         {/* Top 5 */}
         <Subtitle styleClass={winnersClass}>
-          TOP 5 : Candidate No. {competitionResult[4]?.candidate_number || ""} -{" "}
-          {competitionResult[4]?.full_name.toUpperCase() || ""}
+          TOP 5 : Contestant No. {competitionResult[4]?.candidate_number || ""}{" "}
+          - {competitionResult[4]?.full_name.toUpperCase() || ""}
         </Subtitle>
       </div>
 
