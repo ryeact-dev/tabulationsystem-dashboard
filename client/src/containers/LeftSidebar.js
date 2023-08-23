@@ -67,8 +67,12 @@ if (currentUser.role === "user")
                   end
                   to={route.path}
                   className={({ isActive }) =>
-                    `${isActive ? "bg-base-200 font-semibold" : "font-normal"}`
-                  }
+                      `${
+                        isActive
+                          ? "text-primary font-semibold bg-base-100"
+                          : "font-normal"
+                      }`
+                    }
                 >
                   {route.icon} {route.name}
                   {location.pathname === route.path ? (
