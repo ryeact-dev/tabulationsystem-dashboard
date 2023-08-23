@@ -29,9 +29,13 @@ export default function SidebarSubmenu({ submenu, name, icon }) {
               <NavLink
                 end
                 to={m.path}
-                className={({ isActive }) =>
-                  `${isActive ? "bg-base-200 font-semibold " : "font-normal"}`
-                }
+               className={({ isActive }) =>
+                      `${
+                        isActive
+                          ? "text-primary font-semibold bg-base-100"
+                          : "font-normal"
+                      }`
+                    }
               >
                 {m.icon} {m.name}
                 {location.pathname === m.path ? (
